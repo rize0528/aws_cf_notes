@@ -9,16 +9,14 @@ tags: aws, cloudformation, stack
 aws cloudformation validate-template --template-body <TEMPLATE_FILEPATH>
 ```
 # Function Lists
-* **!Ref**
-    * Reference a value defined in cf.
+AWS defined several useful inline function, which let you could do text replacement or simple text altering. List as followings:
+* **!Ref** - Reference a value defined in cf.
     * Example:
         * ```!Ref Env```
-* **!Sub**
-    * Formatting a value with given template.
+* **!Sub** - Formatting a value with given template.
     * Example: 
         * ```BucketName: !Sub "aws-${Env}-${AWS::Region}-ml-model"```
-* **!FindInMap**
-    * Find a paired value defined in Mapping section.
+* **!FindInMap** - Find a paired value defined in Mapping section
 
 # Parameters
 
