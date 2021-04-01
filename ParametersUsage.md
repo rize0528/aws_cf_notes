@@ -3,11 +3,40 @@ title: Basic Cloudformation Usage
 tags: aws, cloudformation, stack
 ---
 
-# Basic cloudformation usage
+# Useful commands
+1. Validate cf templates
+```
+aws cloudformation validate-template --template-body <TEMPLATE_FILEPATH>
+```
+# Function Lists
+* **!Ref**
+    * Reference a value defined in cf.
+    * Example:
+        * ```!Ref Env```
+* **!Sub**
+    * Formatting a value with given template.
+    * Example: 
+        * ```BucketName: !Sub "aws-${Env}-${AWS::Region}-ml-model"```
+* **!FindInMap**
+    * Find a paired value defined in Mapping section.
 
-## Parameters
+# Parameters
 
-### Variable Mapping
+## Define a static parameter
+* Add an unique name in **Parameters** section
+* Specify the value type, such as **String**,
+* Visit [**Parameters**](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) for details
+```yaml
+Parameters:
+    Description: The product env type
+    Type: String
+    Value: dev
+```
+## Define a parameter referred to SSM parameter
+* By placing the value in **Type** of a parameter to
+    * Example:```AWS::SSM::Parameters::Value<String>```
+
+## Variable Mapping
 * Define the mapping pairs within [**Mappings**](https://docs.aws.amazon.com/zh_tw/AWSCloudFormation/latest/UserGuide/mappings-section-structure.html) section.
 * Access the mapped value with [**!FindInMap**](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html) function.
 
